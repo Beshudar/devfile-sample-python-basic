@@ -12,7 +12,7 @@ import requests
 import telebot
 from colorama import Back, Fore, Style
 
-logging.basicConfig(format = u'%(levelname)-8s [%(asctime)s] %(message)s', level = logging.INFO, filename = u'mylog.log')
+#logging.basicConfig(format = u'%(levelname)-8s [%(asctime)s] %(message)s', level = logging.INFO, filename = u'mylog.log')
 
 bot = telebot.TeleBot('1493251280:AAFLd-I1FxE4gck3f6gkcxsfTBhsnv_-iZs');#Даём токен.
 
@@ -74,23 +74,23 @@ def get_text_messages(message): #Получаю сообщение
             bot.send_message(message.from_user.id,text="ДА ты красавчик")
         elif message.text.startswith("/цит") or message.text.startswith("/citat"):
             bot.send_message(message.from_user.id, citat())
-            logging.info( f"Команду по вызову цитаты использовал - {message.from_user.id}" )
+            #logging.info( f"Команду по вызову цитаты использовал - {message.from_user.id}" )
         elif message.text == "/os":
             f=os.popen('cat /etc/*-release')
             rd=f.read()
             bot.send_message(message.from_user.id,rd)
-            logging.info( f"Команду /beep использовал - {message.from_user.id}" )
+            #logging.info( f"Команду /beep использовал - {message.from_user.id}" )
         elif message.text.lower().find("программист") != -1:
             bot.send_animation(message.from_user.id,random.choice(images1))
-            logging.info( f"Команду программист использовал - {message.from_user.id}" )
+            #logging.info( f"Команду программист использовал - {message.from_user.id}" )
         elif message.text == "пидорас":
             bot.send_message(message.from_user.id,"Попався пидор!")
             bot.send_photo(message.from_user.id,"https://cdn.discordapp.com/attachments/709460453725569085/809003835279671317/maxresdefault.jpg")
-            logging.info( f"Команду пидорас использовал - {message.from_user.id}" )
+            #logging.info( f"Команду пидорас использовал - {message.from_user.id}" )
         else : bot.send_message(message.from_user.id, f"Нету команды  {message.text}!")
     else : 
         bot.send_message(message.from_user.id, "У вас нет прав на выполнение этой команды!")
-        logging.error( f"Нет прав администратора у - {message.from_user.id}" )
+        #logging.error( f"Нет прав администратора у - {message.from_user.id}" )
 
 bot.polling(none_stop=True, interval=0)
 os.system("clear")
