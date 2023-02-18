@@ -1,6 +1,4 @@
-#!/usr/bin/python3
 import html
-import logging
 import os
 import platform
 import random
@@ -18,7 +16,7 @@ bot = telebot.TeleBot('1493251280:AAFLd-I1FxE4gck3f6gkcxsfTBhsnv_-iZs');#Даё�
 
 admin = [709265248,1291659706,1876112232,870857109]#Айди чатов админов
 
-#Переменные с фотографиями программистов.
+#Переменные с фотографиями для комманды программист.
 images1 = ["https://cdn.discordapp.com/attachments/709460453725569085/808993635848159312/3HeO_20210119084221.gif", 
             "http://forum.moonpw.ru/uploads/monthly_2020_12/dave_coding_dribbble.thumb.gif.2025dbd947fca0fa08ccc3cc54c21c94.gif",
             "https://avatars.mds.yandex.net/get-zen_doc/1712061/pub_5e8d925f98ac907803229422_5e8d9d015af0cc63093f230e/orig",
@@ -31,17 +29,14 @@ BGreen = Back.GREEN
 FGreen = Fore.GREEN
 
 #Вывод о запуске
-print(Fore.GREEN + "[INFO]Ия запустился кожанный ублюдок",Res)
-#os.system("notify-send --icon=/usr/share/icons/Yaru/24x24@2x/mimetypes/application-x-python-bytecode.png --expire-time=5000 'Бот запущен'")
+print(Fore.GREEN + "[INFO] BrevnoBot started!",Res)
 print(Style.RESET_ALL)
 print(FGreen + "Запуск на ", platform.system(),"Сетевое имя:", platform.node(),Res)
-
-
 bot.send_message(709265248, "Бот запущен!✅")
 
 
-
-def citat(): #Функция цитаты
+#Функция команды /цит
+def citat():
     response = requests.get('https://bash.im/random')
     if (response.status_code==200):
         ee=response.text
@@ -64,7 +59,7 @@ def get_text_messages(message): #Получаю сообщение
             if message.text == t:
                 bot.send_message(message.from_user.id,m)
         
-        print(Fore.CYAN, "Сообщение отправил: ", message.text,", Отправил пользователь:", message.from_user.username,Res)
+        print(Fore.CYAN, "Сообщение: ", message.text,", Отправил пользователь:", message.from_user.username,Res)
         
 
         if message.text == "Привет":
@@ -74,23 +69,20 @@ def get_text_messages(message): #Получаю сообщение
             bot.send_message(message.from_user.id,text="ДА ты красавчик")
         elif message.text.startswith("/цит") or message.text.startswith("/citat"):
             bot.send_message(message.from_user.id, citat())
-            #logging.info( f"Команду по вызову цитаты использовал - {message.from_user.id}" )
         elif message.text == "/os":
             f=os.popen('cat /etc/*-release')
             rd=f.read()
             bot.send_message(message.from_user.id,rd)
-            #logging.info( f"Команду /beep использовал - {message.from_user.id}" )
         elif message.text.lower().find("программист") != -1:
             bot.send_animation(message.from_user.id,random.choice(images1))
-            #logging.info( f"Команду программист использовал - {message.from_user.id}" )
         elif message.text == "пидорас":
             bot.send_message(message.from_user.id,"Попався пидор!")
             bot.send_photo(message.from_user.id,"https://cdn.discordapp.com/attachments/709460453725569085/809003835279671317/maxresdefault.jpg")
-            #logging.info( f"Команду пидорас использовал - {message.from_user.id}" )
         else : bot.send_message(message.from_user.id, f"Нету команды  {message.text}!")
     else : 
         bot.send_message(message.from_user.id, "У вас нет прав на выполнение этой команды!")
-        #logging.error( f"Нет прав администратора у - {message.from_user.id}" )
+        print(Fore.RED + "[INFO] {message.from_user.id} access denied!",Res)
+        print(Style.RESET_ALL)
 
 bot.polling(none_stop=True, interval=0)
 os.system("clear")
