@@ -7,8 +7,6 @@ import random
 import time
 import urllib
 from subprocess import check_output
-from tkinter import *
-
 import keyboa
 import requests
 import telebot
@@ -18,7 +16,7 @@ logging.basicConfig(format = u'%(levelname)-8s [%(asctime)s] %(message)s', level
 
 bot = telebot.TeleBot('1493251280:AAFLd-I1FxE4gck3f6gkcxsfTBhsnv_-iZs');#Даём токен.
 
-admin = [709265248,1291659706,1876112232]#Айди чатов админов
+admin = [709265248,1291659706,1876112232,870857109]#Айди чатов админов
 
 #Переменные с фотографиями программистов.
 images1 = ["https://cdn.discordapp.com/attachments/709460453725569085/808993635848159312/3HeO_20210119084221.gif", 
@@ -40,6 +38,7 @@ print(FGreen + "Запуск на ", platform.system(),"Сетевое имя:",
 
 
 bot.send_message(709265248, "Бот запущен!✅")
+
 
 
 def citat(): #Функция цитаты
